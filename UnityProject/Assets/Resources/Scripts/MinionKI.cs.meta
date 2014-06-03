@@ -1,0 +1,12 @@
+fileFormatVersion: 2
+guid: 615fd62978d73e34fa40b27e277375af
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - target: {instanceID: 0}
+  - player: {instanceID: 0}
+  - particlefx: {fileID: 19800000, guid: 74095aa702e7b1740a9d382a2b513331, type: 2}
+  - body: {fileID: 100006, guid: d5b668f5eafe56c49ab3e83c9ad6a45f, type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
