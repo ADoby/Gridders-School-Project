@@ -8,9 +8,14 @@ public class BlastExplosion : MonoBehaviour {
 
 	public float lifeTimer = 0.0f;
 
-	public void reset(){
+	public void Reset(){
 		lifeTimer = 0.0f;
 	}
+
+    public void SetPool(string poolName)
+    {
+        this.poolName = poolName;
+    }
 
 	// Update is called once per frame
 	void Update () {

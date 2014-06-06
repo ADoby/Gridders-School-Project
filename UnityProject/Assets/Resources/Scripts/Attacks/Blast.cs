@@ -92,8 +92,8 @@ public class Blast : MonoBehaviour {
 			if(PartikelPoolName != ""){
 				GameObject go = GameObjectPool.Instance.Spawn(PartikelPoolName,  transform.position, Quaternion.identity);
 				go.particleSystem.Play();
-				go.GetComponent<BlastExplosion>().reset ();
-				go.GetComponent<BlastExplosion>().poolName = PartikelPoolName;
+                go.SendMessage("Reset", SendMessageOptions.DontRequireReceiver);
+                go.SendMessage("SetPool", PartikelPoolName, SendMessageOptions.DontRequireReceiver);
 			}
 
 		}
