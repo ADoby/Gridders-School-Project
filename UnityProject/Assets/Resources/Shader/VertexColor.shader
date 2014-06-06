@@ -16,7 +16,7 @@
 CGPROGRAM
 #include "UnityCG.cginc"
 #pragma surface surf BlinnPhong vertex:vert
-			#pragma target 3.0
+#pragma target 3.0
 			
 			sampler2D _MainTex;
 			sampler2D _BumpMap;
@@ -41,16 +41,17 @@ CGPROGRAM
 			void surf (Input IN, inout SurfaceOutput o) {
 				half h = tex2D (_ParallaxMap, IN.uv_BumpMap).w;
 				float2 offset = ParallaxOffset (h, _Parallax, IN.viewDir);
-				IN.uv_MainTex += offset;
+				
+				//IN.uv_MainTex += offset;
 				IN.uv_BumpMap += offset;
 				IN.uv_DetailBumpMap += offset;
 			
 				fixed4 tex = tex2D(_MainTex, IN.uv_MainTex);
+				
 				o.Albedo = tex.rgb * IN.customColor.rgb;
 				o.Gloss = tex.a;
 				o.Alpha = tex.a;
 				o.Specular = _Shininess;
-				//o.Normal = UnpackNormal(tex2D(_BumpMap, IN.uv_BumpMap));
 				o.Normal = UnpackNormal(tex2D(_BumpMap, IN.uv_BumpMap)) + UnpackNormal(tex2D (_DetailBumpMap, IN.uv_DetailBumpMap));
 			}
 	    ENDCG
