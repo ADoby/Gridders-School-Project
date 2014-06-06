@@ -6,6 +6,8 @@
 		_BumpMap ("Bumpmap", 2D) = "bump" {}
 		_ParallaxMap ("Heightmap (A)", 2D) = "black" {}
 		_Parallax ("Height", Range (0.005, 0.08)) = 0.02
+
+		_DetailBumpMap ("Detail Bumpmap", 2D) = "bump" {}
     }
     SubShader 
     {
@@ -17,6 +19,7 @@
 			
 			sampler2D _MainTex;
 			sampler2D _BumpMap;
+			sampler2D _DetailBumpMap;
 			sampler2D _ParallaxMap;
 			half _Shininess;
 			float _Parallax;
@@ -24,6 +27,7 @@
 			struct Input {
 			  float2 uv_MainTex;
 			  float2 uv_BumpMap;
+			  float2 uv_DetailBumpMap;
 			  float4 customColor;
 			  float3 viewDir;
 			};
@@ -43,7 +47,7 @@
 			  	o.Gloss = tex.a;
 			  	o.Specular = _Shininess;
 			  	//o.Alpha = IN.customColor.a;
-			  	o.Normal = UnpackNormal (tex2D (_BumpMap, IN.uv_MainTex));
+			  	o.Normal = UnpackNormal (tex2D (_BumpMap, IN.uv_MainTex) + tex2D (_DetailBumpMap, IN.uv_DetailBumpMap));
 			}
 	    ENDCG
         
