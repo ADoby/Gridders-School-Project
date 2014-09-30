@@ -50,7 +50,7 @@ CGPROGRAM
 				
 				o.Albedo = tex.rgb * IN.customColor.rgb;
 				o.Gloss = tex.a;
-				o.Alpha = tex.a;
+				//o.Alpha = tex.a;
 				o.Specular = _Shininess;
 				o.Normal = UnpackNormal(tex2D(_BumpMap, IN.uv_BumpMap)) + UnpackNormal(tex2D (_DetailBumpMap, IN.uv_DetailBumpMap));
 			}

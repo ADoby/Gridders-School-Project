@@ -87,6 +87,11 @@ public class VideoMenu : MonoBehaviour {
             Screen.lockCursor = true;
             enabled = false;
         }
+
+        if (GUILayout.Button("Exit Game"))
+        {
+            Application.Quit();
+        }
         GUI.EndGroup();
     }
 }
