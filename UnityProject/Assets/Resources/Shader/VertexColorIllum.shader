@@ -1,4 +1,4 @@
-﻿Shader "Self-Illumin/Vertex_DiffuseBumpIllum" {
+﻿Shader "Self-Illumin/Vertex_Bump" {
     Properties {
     	_SpecColor ("Specular Color", Color) = (0.5, 0.5, 0.5, 1)
     	_Shininess ("Shininess", Range (0.03, 1)) = 0.078125
@@ -17,6 +17,8 @@
         Tags { "RenderType"="Opaque"}       
 		
 	    CGPROGRAM
+        #pragma exclude_renderers gles
+
 	    #include "UnityCG.cginc"
 		#pragma surface surf BlinnPhong vertex:vert
 
@@ -49,7 +51,8 @@
 			void surf (Input IN, inout SurfaceOutput o) {
 				fixed4 tex = tex2D (_MainTex, IN.uv_MainTex);
 				fixed4 illumText = tex2D(_Illum, IN.uv_MainTex);
-			  	o.Albedo = tex.rgb * IN.customColor; //Textur + VertexColors
+
+			  	o.Albedo = tex.rgb * IN.customColor;
 			  	o.Gloss = tex.a;
 			  	o.Emission = _IllumColor.rgb * illumText.a * illumText.rgb * IN.fooAlpha;
 			  	o.Specular = _Shininess;
